@@ -1,0 +1,32 @@
+
+# API All tasks
+
+GET {{host-url}}//tasks/all
+
+###
+
+# API All courses
+
+GET {{host-url}}//courses/all
+
+###
+
+
+# API all users
+
+GET {{host-url}}//users/all
+
+###
+
+
+# find courses by user ID
+
+GET {{host-url}}//courses/byUser/e0699c8e-b4d6-4ff3-a955-0ad70c538e73
+
+###
+
+# find tasks by course ID
+
+GET {{host-url}}//tasks/byCourse/{CourseID}
+
+###
