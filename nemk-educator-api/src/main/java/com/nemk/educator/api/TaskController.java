@@ -5,8 +5,10 @@ import com.nemk.educator.db.CourseRepository;
 import com.nemk.educator.db.TaskRepository;
 import com.nemk.educator.model.Course;
 import com.nemk.educator.model.Task;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ValidationException;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,5 +33,20 @@ public class TaskController {
     @GetMapping("/byCourse/{id}")
     public List<Task> byCourse(@PathVariable String id){
         return this.taskRepository.findAllByCourseId(UUID.fromString(id));
+    }
+
+    @PostMapping("/new")
+    public Task newTask(@RequestBody Task task, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            throw new ValidationException();
+        }
+        Task savedTask= this.taskRepository.save(task);
+
+        return savedTask;
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id) {
+        this.taskRepository.deleteById(UUID.fromString(id));
     }
 }

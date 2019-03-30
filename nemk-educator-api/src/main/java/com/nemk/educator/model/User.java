@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -14,7 +15,10 @@ public class User {
     @Id
     private UUID id;
     private String name;
+
+    @Column(unique=true)
     private String email;
+
     private String password;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
@@ -51,6 +55,19 @@ public class User {
 
     public List<Course> getCourses() {
         return courses;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(email, user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, password, courses);
     }
 }
 

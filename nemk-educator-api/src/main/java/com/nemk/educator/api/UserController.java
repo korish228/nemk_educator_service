@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ValidationException;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/users")
@@ -29,12 +30,18 @@ public class UserController {
         return this.userRepository.findAll();
     }
 
+
     @PostMapping("/registration")
-    public User registerUser(@RequestBody User user, BindingResult bindingResult){
-        if(bindingResult.hasErrors() && this.userRepository.findAll().contains(user)){
+    public User registerUser(@RequestBody User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             throw new ValidationException("User has errors; Can not register user;");
         }
         return this.userRepository.save(user);
 
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id) {
+        this.userRepository.deleteById(UUID.fromString(id));
     }
 }
