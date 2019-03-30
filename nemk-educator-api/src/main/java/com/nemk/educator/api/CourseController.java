@@ -42,9 +42,8 @@ public class CourseController {
         if (bindingResult.hasErrors()) {
             throw new ValidationException();
         }
-        Course savedCourse = this.courseRepository.save(course);
 
-        return savedCourse;
+        return this.courseRepository.save(course);
     }
 
 

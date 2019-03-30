@@ -1,1 +1,394 @@
-/* You can add global styles to this file, and also import other style files */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent; }
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.name_of_part {
+  font-size: 18px;
+  margin: 20px 0;
+  color: #F7F7FF; }
+
+p {
+  font-size: 14px; }
+
+.title_of_item {
+  display: block;
+  margin-left: 0;
+  margin-bottom: 10px;
+  color: #F7F7FF; }
+
+p {
+  font-size: 16px; }
+
+.main_content {
+  margin-top: 20px; }
+
+.part {
+  background-color: #6A6C75;
+  height: 1000px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  padding: 15px; }
+
+.first_item {
+  margin-top: 20px; }
+
+.top_line {
+  width: 100%;
+  z-index: 100;
+  padding: 25px 0;
+  height: 80px;
+  background-color: #3F88C5; }
+.top_line .list_of_pages {
+  display: block;
+  float: left; }
+.top_line .list_of_pages .page_item {
+  list-style-type: none;
+  float: left;
+  margin-right: 30px; }
+.top_line .list_of_pages .page_item .page_item_link {
+  color: #F7F7FF;
+  font-size: 20px; }
+.top_line .list_of_pages .page_item .page_item_link:hover {
+  text-decoration: none; }
+.top_line .log_out_but {
+  float: right;
+  color: #F7F7FF;
+  font-size: 20px; }
+.top_line .log_out_but:hover {
+  text-decoration: none; }
+.top_line .top_search {
+  display: block;
+  float: left;
+  border: 1px solid #92959E;
+  -webkit-border-radius: 3px;
+  border-radius: 3px; }
+.top_line .top_search input {
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: transparent;
+  outline: none; }
+.top_line .top_search input::-webkit-input-placeholder {
+  color: #F7F7FF; }
+.top_line .top_search input::-moz-placeholder {
+  color: #F7F7FF; }
+.top_line .top_search input:-ms-input-placeholder {
+  color: #F7F7FF; }
+.top_line .top_search input::-ms-input-placeholder {
+  color: #F7F7FF; }
+.top_line .top_search input::placeholder {
+  color: #F7F7FF; }
+.top_line .top_search button {
+  background-color: transparent;
+  margin: 0 10px;
+  color: #fff;
+  border: none;
+  padding: 0; }
+.top_line .top_search button .search-icon {
+  padding: 0;
+  margin: 0;
+  color: #F7F7FF; }
+
+.chat_content .people-list .search {
+  margin-bottom: 10px;
+  position: relative;
+  border: 1px solid #92959E;
+  width: 80%; }
+.chat_content .people-list .search input {
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: none;
+  padding: 14px;
+  color: white;
+  background: #6A6C75;
+  width: 80%;
+  font-size: 14px;
+  outline: none; }
+.chat_content .people-list .search input::-webkit-input-placeholder {
+  color: #92959E; }
+.chat_content .people-list .search input::-moz-placeholder {
+  color: #92959E; }
+.chat_content .people-list .search input:-ms-input-placeholder {
+  color: #92959E; }
+.chat_content .people-list .search input::-ms-input-placeholder {
+  color: #92959E; }
+.chat_content .people-list .search input::placeholder {
+  color: #92959E; }
+.chat_content .people-list .search button {
+  background: none;
+  margin-right: 0;
+  border: none; }
+.chat_content .people-list .search button .search-icon {
+  color: #fff; }
+
+.chat_content .list li {
+  text-decoration: none;
+  padding-bottom: 20px;
+  list-style-type: none;
+  cursor: pointer; }
+.chat_content .list li img {
+  float: left; }
+.chat_content .list li .about {
+  float: left;
+  margin-top: 8px;
+  padding-left: 8px; }
+.chat_content .list li .about .name {
+  color: #F7F7FF; }
+.chat_content .list li .about .status {
+  color: #F7F7FF; }
+
+.chat_content .chat_part {
+  padding: 0; }
+
+.chat_content .chat {
+  background: #F2F5F8;
+  -webkit-border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #434651; }
+.chat_content .chat .chat-header {
+  padding: 20px;
+  border-bottom: 2px solid white; }
+.chat_content .chat .chat-header img {
+  float: left; }
+.chat_content .chat .chat-header .chat-about {
+  float: left;
+  padding-left: 10px;
+  margin-top: 6px; }
+.chat_content .chat .chat-header .chat-about .chat-with {
+  font-weight: bold;
+  font-size: 16px; }
+.chat_content .chat .chat-header .chat-about .chat-num-messages {
+  color: #92959E; }
+.chat_content .chat .chat-header .fa-star {
+  float: right;
+  color: #D8DADF;
+  font-size: 20px;
+  margin-top: 12px; }
+.chat_content .chat .chat-history {
+  padding: 30px 30px 20px;
+  border-bottom: 2px solid white;
+  overflow-y: scroll;
+  height: 575px; }
+.chat_content .chat .chat-history ul li {
+  list-style-type: none; }
+.chat_content .chat .chat-history ul li .message-data {
+  margin-bottom: 15px; }
+.chat_content .chat .chat-history ul li .message-data .message-data-time {
+  color: #a8aab1;
+  padding-left: 6px; }
+.chat_content .chat .chat-history .message {
+  color: white;
+  padding: 18px 20px;
+  line-height: 26px;
+  font-size: 16px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  margin-bottom: 30px;
+  width: 90%;
+  position: relative; }
+.chat_content .chat .chat-history .message:after {
+  bottom: 100%;
+  left: 7%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-bottom-color: #FFBA08;
+  border-width: 10px;
+  margin-left: -10px; }
+.chat_content .chat .chat-history .my-message {
+  background: #FFBA08; }
+.chat_content .chat .chat-history .other-message {
+  background: #3F88C5; }
+.chat_content .chat .chat-history .other-message:after {
+  border-bottom-color: #3F88C5;
+  left: 93%; }
+.chat_content .chat .chat-message {
+  padding: 30px; }
+.chat_content .chat .chat-message textarea {
+  width: 100%;
+  border: none;
+  padding: 10px 20px;
+  font: 14px/22px "Lato", Arial, sans-serif;
+  margin-bottom: 10px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  resize: none; }
+.chat_content .chat .chat-message .fa-file-o, .chat_content .chat .chat-message .fa-file-image-o {
+  font-size: 16px;
+  color: #92959E;
+  cursor: pointer; }
+.chat_content .chat .chat-message button {
+  float: right;
+  color: #3F88C5;
+  font-size: 16px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background: #F2F5F8; }
+.chat_content .chat .chat-message button:hover {
+  color: #3476ac; }
+
+.online, .offline, .me {
+  margin-right: 3px;
+  font-size: 10px; }
+
+.online {
+  color: #52B788; }
+
+.offline {
+  color: #FFBA08; }
+
+.me {
+  color: #3F88C5; }
+
+.align-left {
+  text-align: left; }
+
+.align-right {
+  text-align: right; }
+
+.float-right {
+  float: right; }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+.course_main .course_item {
+  margin: 25px 0;
+  background-color: #3F88C5;
+  width: 100%;
+  padding: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  overflow: auto; }
+.course_main .course_item .descr_of_course, .course_main .course_item .type_of_course {
+  font-size: 14px; }
+.course_main .course_item .learn_but {
+  display: block;
+  background-color: #52B788;
+  padding: 15px;
+  text-align: center;
+  width: 100px;
+  float: right;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  color: #F7F7FF; }
+
+.course_main .search {
+  display: block;
+  background-color: #52B788;
+  color: #F7F7FF;
+  margin-top: 20px;
+  padding: 10px 30px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none; }
+
+.course_descr_section {
+  background-color: #92959E;
+  min-height: 300px;
+  width: 100%;
+  padding: 70px 0; }
+.course_descr_section .course_descr_title {
+  text-align: left;
+  font-size: 48px; }
+.course_descr_section .course_little_descr {
+  font-size: 24px;
+  text-align: left; }
+.course_descr_section span .author {
+  color: #000; }
+
+.current_course_page {
+  background-color: #6A6C75; }
+.current_course_page .part {
+  -webkit-border-radius: 0;
+  border-radius: 0; }
+.current_course_page .part .req_block {
+  margin-left: 30px; }
+.current_course_page .part .list_of_topics .topic_item {
+  margin: 10px 0;
+  list-style-type: none;
+  display: block;
+  background-color: #FFBA08;
+  -webkit-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
+.current_course_page .part .list_of_topics .topic_item a {
+  color: #F7F7FF;
+  -webkit-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s; }
+.current_course_page .part .list_of_topics .topic_item a .topic_title {
+  padding: 15px 30px;
+  display: block; }
+.current_course_page .part .list_of_topics .topic_item:hover {
+  -webkit-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s;
+  background-color: #FFA500; }
+.current_course_page .part .list_of_topics .topic_item:hover a {
+  text-decoration: none;
+  -webkit-transition: 0.25s;
+  -o-transition: 0.25s;
+  transition: 0.25s; }
+
+.profile_main .profile {
+  background-color: #FFBA08;
+  width: 100%;
+  height: 500px; }
+.profile_main .profile img {
+  display: block; }
+.profile_main .profile .profile_name, .profile_main .profile .profil_nic {
+  text-align: center;
+  display: block;
+  font-size: 48px; }
+.profile_main .profile .profil_nic {
+  font-size: 24px; }
+
+.task_section {
+  min-height: 100vh;
+  background-color: #6A6C75;
+  padding: 30px 0; }
+.task_section .video_player {
+  margin: 0 auto;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  width: 100%;
+  display: block; }
+.task_section p {
+  margin: 10px 0;
+  color: #F7F7FF; }

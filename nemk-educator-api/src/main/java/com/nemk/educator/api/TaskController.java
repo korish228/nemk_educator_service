@@ -40,9 +40,8 @@ public class TaskController {
         if (bindingResult.hasErrors()) {
             throw new ValidationException();
         }
-        Task savedTask= this.taskRepository.save(task);
 
-        return savedTask;
+        return this.taskRepository.save(task);
     }
 
     @DeleteMapping("/{id}")
