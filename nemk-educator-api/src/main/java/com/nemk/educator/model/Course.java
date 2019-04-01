@@ -44,6 +44,13 @@ public class Course {
         this.description = description;
     }
 
+    public Course(String id, String title, String titleDescription, String requirements, String description, User user) {
+        this(title,titleDescription,requirements,description,user);
+        if (id != null) {
+            this.id = UUID.fromString(id);
+        }
+    }
+
     public UUID getId() {
         return id;
     }

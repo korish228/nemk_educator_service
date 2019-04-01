@@ -1,6 +1,7 @@
 package com.nemk.educator.api;
 
 import com.nemk.educator.Mapper;
+import com.nemk.educator.api.viewmodel.UserViewModel;
 import com.nemk.educator.db.TaskRepository;
 import com.nemk.educator.db.UserRepository;
 import com.nemk.educator.model.Task;
@@ -26,17 +27,21 @@ public class UserController {
 
     @GetMapping("/all")
     public List<User> all(){
-
         return this.userRepository.findAll();
     }
 
 
     @PostMapping("/registration")
-    public User registerUser(@RequestBody User user, BindingResult bindingResult) {
+    public User registerUser(@RequestBody UserViewModel userViewModel, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ValidationException("User has errors; Can not register user;");
         }
-        return this.userRepository.save(user);
+
+        User user = mapper.convertToUserEntity(userViewModel);
+
+        this.userRepository.save(user);
+
+        return user;
 
     }
 

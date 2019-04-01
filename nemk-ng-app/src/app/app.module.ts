@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CurrentCourseComponent } from './current-course/current-course.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CurrentTaskComponent } from './current-task/current-task.component';
+import { FriendsComponent } from './friends/friends.component';
 
 const appRoutes: Routes = [
   {
@@ -25,12 +26,20 @@ const appRoutes: Routes = [
     component: ProfileComponent
   },
   {
+    path: '',
+    component: ProfileComponent
+  },
+  {
     path: 'current_course',
     component: CurrentCourseComponent
   },
   {
     path: 'current_task',
     component: CurrentTaskComponent
+  },
+  {
+    path: 'friends',
+    component: FriendsComponent
   }
 ];
 
@@ -43,7 +52,8 @@ const appRoutes: Routes = [
     CoursesComponent,
     ProfileComponent,
     CurrentCourseComponent,
-    CurrentTaskComponent
+    CurrentTaskComponent,
+    FriendsComponent
   ],
   imports: [
     BrowserModule,

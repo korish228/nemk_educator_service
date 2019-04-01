@@ -37,6 +37,13 @@ public class User {
         this.password = password;
     }
 
+    public User(String id, String name, String email, String password) {
+        this(name,email,password);
+        if (id != null) {
+            this.id = UUID.fromString(id);
+        }
+    }
+
     public UUID getId() {
         return id;
     }
@@ -57,17 +64,5 @@ public class User {
         return courses;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(email, user.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, email, password, courses);
-    }
 }
 

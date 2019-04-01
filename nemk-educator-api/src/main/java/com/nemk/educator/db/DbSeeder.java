@@ -7,6 +7,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Component
 @ConditionalOnProperty(name = "nemk.db.recreate", havingValue = "true")
@@ -32,12 +35,13 @@ public class DbSeeder implements CommandLineRunner {
         User user = new User("Dmytro","korish","999");
         User user1 = new User("Danya","danj","22e1");
         User user2 = new User("Alex","Alel","3dd3");
+
         this.userRepository.save(user);
         this.userRepository.save(user1);
         this.userRepository.save(user2);
 
-        Course course = new Course("Phyton","","English","lalala",user);
-        Course course1 = new Course("Java","Lala","Fraench","lalala",user1);
+        Course course = new Course("Phyton","","english","lalala",user);
+        Course course1 = new Course("Java","Lala","french","lalala",user1);
 
         this.courseRepository.save(course);
         this.courseRepository.save(course1);

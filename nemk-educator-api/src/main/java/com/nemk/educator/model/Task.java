@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user")
+@Table(name = "task")
 public class Task {
 
     @Id
@@ -27,6 +27,13 @@ public class Task {
         this();
         this.title = title;
         this.course = course;
+    }
+
+    public Task(String id, String title, Course course) {
+        this(title, course);
+        if (id != null) {
+            this.id = UUID.fromString(id);
+        }
     }
 
     public UUID getId() {
