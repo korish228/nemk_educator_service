@@ -63,6 +63,8 @@ public class CourseController {
             throw new ValidationException();
         }
 
+        System.out.println(courseViewModel);
+
         Course course = this.mapper.convertToCourseEntity(courseViewModel);
 
         this.courseRepository.save(course);

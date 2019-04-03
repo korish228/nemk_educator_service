@@ -11,6 +11,8 @@ import { CurrentCourseComponent } from './current-course/current-course.componen
 import { RouterModule, Routes } from '@angular/router';
 import { CurrentTaskComponent } from './current-task/current-task.component';
 import { FriendsComponent } from './friends/friends.component';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   {
@@ -57,6 +59,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],

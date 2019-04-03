@@ -19,11 +19,17 @@ public class CourseViewModel {
 
     @NotNull
     private String userId;
+
     private String requirements;
     private String description;
     private Date created;
 
     private int nbTasks;
+
+    public CourseViewModel() {
+        this.id = UUID.randomUUID().toString();
+        this.created = new Date();
+    }
 
     public String getId() {
         return id;
@@ -87,5 +93,19 @@ public class CourseViewModel {
 
     public void setNbTasks(int nbTasks) {
         this.nbTasks = nbTasks;
+    }
+
+    @Override
+    public String toString() {
+        return "CourseViewModel{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", titleDescription='" + titleDescription + '\'' +
+                ", userId='" + userId + '\'' +
+                ", requirements='" + requirements + '\'' +
+                ", description='" + description + '\'' +
+                ", created=" + created +
+                ", nbTasks=" + nbTasks +
+                '}';
     }
 }

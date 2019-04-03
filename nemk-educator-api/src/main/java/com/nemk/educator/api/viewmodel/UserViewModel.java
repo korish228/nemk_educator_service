@@ -24,6 +24,10 @@ public class UserViewModel {
 
     private int nbCourses;
 
+    public UserViewModel() {
+        this.id = UUID.randomUUID().toString();
+    }
+//
     public int getNbCourses() {
         return nbCourses;
     }
@@ -62,5 +66,16 @@ public class UserViewModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "UserViewModel{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", nbCourses=" + nbCourses +
+                '}';
     }
 }

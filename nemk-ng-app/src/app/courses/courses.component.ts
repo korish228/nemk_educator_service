@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Course} from '../models/course';
+import {ApiService} from '../shared/api-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesComponent implements OnInit {
 
-  constructor() { }
+  courses: Course [] = [];
+
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.getAllCourses();
   }
 
+
+  public getAllCourses() {
+    this.apiService.getAllCourses().subscribe(
+      res => {
+        this.courses = res;
+        console.log(res);
+      },
+        error1 => {
+          alert('error has occured');
+        }
+    );
+  }
 }

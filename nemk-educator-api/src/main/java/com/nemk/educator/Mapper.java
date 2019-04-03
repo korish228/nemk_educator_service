@@ -64,7 +64,7 @@ public class Mapper {
     }
 
     public User convertToUserEntity(UserViewModel viewModel) {
-        User user = this.userRepository.findById(UUID.fromString(viewModel.getId())).get();
+//        User user = this.userRepository.findById(UUID.fromString(viewModel.getId())).get();
         User entity = new User(viewModel.getId(), viewModel.getName(), viewModel.getEmail(), viewModel.getPassword());
 
         return entity;
@@ -72,7 +72,7 @@ public class Mapper {
 
     public Course convertToCourseEntity(CourseViewModel viewModel) {
         User user = this.userRepository.findById(UUID.fromString(viewModel.getId())).get();
-        Course entity = new Course(viewModel.getId(), viewModel.getTitle(), viewModel.getTitleDescription(), viewModel.getRequirements(), viewModel.getDescription(), user);
+        Course entity = new Course(viewModel.getId(), viewModel.getTitle(), viewModel.getTitleDescription(), viewModel.getRequirements(), viewModel.getDescription(),viewModel.getCreated(), user);
 
         return entity;
     }

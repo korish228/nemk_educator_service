@@ -8,7 +8,9 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 @Component
@@ -33,23 +35,23 @@ public class DbSeeder implements CommandLineRunner {
         this.userRepository.deleteAll();
 
         User user = new User("Dmytro","korish","999");
-        User user1 = new User("Danya","danj","22e1");
-        User user2 = new User("Alex","Alel","3dd3");
+        User user3 = new User("0563aa22-2280-4849-a7e3-0dbe68e8f276", "test","test","test");
 
         this.userRepository.save(user);
-        this.userRepository.save(user1);
-        this.userRepository.save(user2);
+        this.userRepository.save(user3);
 
-        Course course = new Course("Phyton","","english","lalala",user);
-        Course course1 = new Course("Java","Lala","french","lalala",user1);
+        Course course = new Course("Phyton","Lalalalallalalalalall","english","lalala",user);
+//        Course course1 = new Course("Java","Lala","french","lalala",user1);
+        Course course2 = new Course("test","This coursekcnds hsfd vfnshv djkfvhfnhvhf","test","test",user3);
+
 
         this.courseRepository.save(course);
-        this.courseRepository.save(course1);
+        this.courseRepository.save(course2);
 
         Task task = new Task("Overview",course);
         Task task1 = new Task("Overview1",course);
         Task task2 = new Task("Overview2",course);
-        Task task3 = new Task("Overview2",course1);
+        Task task3 = new Task("Overview2",course2);
 
         this.taskRepository.save(task);
         this.taskRepository.save(task1);

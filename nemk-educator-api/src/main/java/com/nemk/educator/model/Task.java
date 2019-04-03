@@ -1,13 +1,14 @@
 package com.nemk.educator.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
 @Entity
 @Table(name = "task")
-public class Task {
+public class Task implements Serializable {
 
     @Id
     private UUID id;
@@ -18,37 +19,19 @@ public class Task {
     @JoinColumn(name = "course_id")
     private Course course;
 
+    private String fileName;
+
+    private String fileType;
+
+    @Lob
+    private byte[] data;
+
+
     private Task() {
         this.id = UUID.randomUUID();
         this.added = new Date();
     }
 
-    public Task(String title, Course course) {
-        this();
-        this.title = title;
-        this.course = course;
-    }
 
-    public Task(String id, String title, Course course) {
-        this(title, course);
-        if (id != null) {
-            this.id = UUID.fromString(id);
-        }
-    }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public Date getAdded() {
-        return added;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
 }
