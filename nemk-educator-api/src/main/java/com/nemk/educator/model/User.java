@@ -3,22 +3,34 @@ package com.nemk.educator.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+
+//@Table(name = "user", uniqueConstraints = {
+//        @UniqueConstraint(columnNames={"email"})
+//})
 @Entity
 @Table(name = "user")
 public class User {
 
     @Id
+    @Column(name = "user_id")
+    @NotNull
     private UUID id;
+
+    @NotNull
     private String name;
 
     @Column(unique=true)
+    @NotNull
     private String email;
 
+    @NotNull
     private String password;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")

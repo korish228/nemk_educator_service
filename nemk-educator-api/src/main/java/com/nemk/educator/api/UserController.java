@@ -2,59 +2,80 @@ package com.nemk.educator.api;
 
 import com.nemk.educator.Mapper;
 import com.nemk.educator.api.viewmodel.UserViewModel;
-import com.nemk.educator.db.TaskRepository;
-import com.nemk.educator.db.UserRepository;
-import com.nemk.educator.model.Task;
 import com.nemk.educator.model.User;
+import com.nemk.educator.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ValidationException;
+import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
-import java.util.UUID;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
 @CrossOrigin
 public class UserController {
+
     private UserRepository userRepository;
     private Mapper mapper;
 
+    @Autowired
     public UserController(UserRepository userRepository, Mapper mapper) {
         this.userRepository = userRepository;
         this.mapper = mapper;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/allUsers")
     public List<UserViewModel> all(){
         List<User> users = this.userRepository.findAll();
         List<UserViewModel> userViewModel = users.stream()
                 .map(user -> mapper.convertToUserViewModel(user))
                 .collect(Collectors.toList());
+        System.out.println(users.size());
         return userViewModel;
 
     }
 
 
     @PostMapping("/registration")
-    public User registerUser(@RequestBody UserViewModel userViewModel, BindingResult bindingResult) {
+    @ResponseStatus(value= HttpStatus.OK)
+    public UserViewModel createUser(@RequestBody User user, BindingResult bindingResult){
+
         if (bindingResult.hasErrors()) {
             throw new ValidationException("User has errors; Can not register user;");
         }
 
-        System.out.println(userViewModel);
-
-        User user = mapper.convertToUserEntity(userViewModel);
-
         this.userRepository.save(user);
 
-        return user;
+        Path path = Paths.get("src/main/storage/users/" + user.getEmail());
+        File file = path.toFile();
+        file.mkdir();
 
+        return mapper.convertToUserViewModel(user);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id) {
-        this.userRepository.deleteById(UUID.fromString(id));
-    }
+//    @GetMapping("/deleteUser/{email}")
+//    public void delete(@PathVariable String email){
+//
+//        User user = this.userRepository.findByEmail(email);
+//
+//        this.userRepository.deleteByEmail(email);
+//
+//        Path path = Paths.get("src/main/storage/users/" + user.getEmail());
+//        File file = path.toFile();
+//        boolean res = file.delete();
+//        System.out.println(res);
+//
+//    }
+
+
 }

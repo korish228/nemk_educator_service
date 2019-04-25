@@ -14,6 +14,7 @@ import java.util.UUID;
 public class Course {
 
     @Id
+    @Column(name = "course_id")
     private UUID id;
     private String title;
     private String titleDescription;

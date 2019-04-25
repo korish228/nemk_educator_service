@@ -3,14 +3,15 @@ package com.nemk.educator;
 import com.nemk.educator.api.viewmodel.CourseViewModel;
 import com.nemk.educator.api.viewmodel.TaskViewModel;
 import com.nemk.educator.api.viewmodel.UserViewModel;
-import com.nemk.educator.db.CourseRepository;
-import com.nemk.educator.db.TaskRepository;
-import com.nemk.educator.db.UserRepository;
 import com.nemk.educator.model.Course;
 import com.nemk.educator.model.Task;
 import com.nemk.educator.model.User;
+import com.nemk.educator.repository.CourseRepository;
+import com.nemk.educator.repository.TaskRepository;
+import com.nemk.educator.repository.UserRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -56,7 +57,7 @@ public class Mapper {
         TaskViewModel viewModel = new TaskViewModel();
         viewModel.setId(entity.getId().toString());
         viewModel.setTitle(entity.getTitle());
-        viewModel.setAdded(entity.getAdded());
+        viewModel.setCreated(entity.getCreated());
         viewModel.setCourseId(entity.getCourse().getId().toString());
 
         return viewModel;
@@ -64,22 +65,22 @@ public class Mapper {
     }
 
     public User convertToUserEntity(UserViewModel viewModel) {
-//        User user = this.userRepository.findById(UUID.fromString(viewModel.getId())).get();
+        Optional<User> user = this.userRepository.findById(viewModel.getId());
         User entity = new User(viewModel.getId(), viewModel.getName(), viewModel.getEmail(), viewModel.getPassword());
 
         return entity;
     }
 
     public Course convertToCourseEntity(CourseViewModel viewModel) {
-        User user = this.userRepository.findById(UUID.fromString(viewModel.getId())).get();
-        Course entity = new Course(viewModel.getId(), viewModel.getTitle(), viewModel.getTitleDescription(), viewModel.getRequirements(), viewModel.getDescription(),viewModel.getCreated(), user);
+        Optional<User> user = this.userRepository.findById(viewModel.getId());
+        Course entity = new Course(viewModel.getId(), viewModel.getTitle(), viewModel.getTitleDescription(), viewModel.getRequirements(), viewModel.getDescription(),viewModel.getCreated(), user.get());
 
         return entity;
     }
 
     public Task convertToTaskEntity(TaskViewModel viewModel) {
-        Course course = this.courseRepository.findById(UUID.fromString(viewModel.getId())).get();
-        Task entity = new Task(viewModel.getId(), viewModel.getTitle(),course);
+        Course course = this.courseRepository.findById(viewModel.getId());
+        Task entity = new Task(viewModel.getId(), viewModel.getTitle(),viewModel.getCreated(),course);
 
         return entity;
     }
