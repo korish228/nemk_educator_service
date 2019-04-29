@@ -1,15 +1,13 @@
 package com.nemk.educator.repository;
 
-import com.nemk.educator.model.User;
+import com.nemk.educator.model.TaskDocument;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, String>{
+public interface TaskDocumentRepository extends JpaRepository<TaskDocument, String> {
 
-
-    User findByEmail(String email);
 }

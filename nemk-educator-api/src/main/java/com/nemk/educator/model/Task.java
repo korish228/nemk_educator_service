@@ -7,41 +7,44 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "task")
+@Table(name = "tasks")
 public class Task implements Serializable {
 
     @Id
     @Column(name = "task_id")
-    private UUID id;
+    private String id;
+
     private String title;
-    private Date created;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = Course.class)
     @JoinColumn(name = "course_id")
     private Course course;
 
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "task_document_id")
+    private TaskDocument videoFIle;
 
     private Task() {
-        this.id = UUID.randomUUID();
-        this.created = new Date();
+        this.id = UUID.randomUUID().toString();
     }
 
-    public Task(String title, Course course) {
+    public Task(String title, TaskDocument videoFIle, Course course) {
         this();
         this.title = title;
+        this.videoFIle = videoFIle;
         this.course = course;
     }
 
-    public Task(String id, String title, Date created, Course course) {
-        this(title, course);
-        if (id != null) {
-            this.id = UUID.fromString(id);
-        }
-        this.created = created;
+    public Task(String id, String title, TaskDocument videoFIle, Course course) {
+        this(title,videoFIle, course);
+        this.id = id;
     }
 
-    public UUID getId() {
+    public TaskDocument getVideoFIle() {
+        return videoFIle;
+    }
+
+    public String getId() {
         return id;
     }
 
@@ -49,9 +52,6 @@ public class Task implements Serializable {
         return title;
     }
 
-    public Date getCreated() {
-        return created;
-    }
 
     public Course getCourse() {
         return course;

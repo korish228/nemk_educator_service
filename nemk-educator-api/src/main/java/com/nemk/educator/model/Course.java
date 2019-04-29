@@ -15,24 +15,25 @@ public class Course {
 
     @Id
     @Column(name = "course_id")
-    private UUID id;
+    private String id;
+
     private String title;
     private String titleDescription;
 
     @ManyToOne(fetch = FetchType.EAGER, targetEntity = User.class)
     @JoinColumn(name = "user_id")
     private User user;
+
     private String requirements;
     private String description;
-    private Date created;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "course")
     @JsonIgnore
     private List<Task> tasks;
 
     private Course() {
-        this.id = UUID.randomUUID();
         this.tasks = new ArrayList<>();
+        this.id = UUID.randomUUID().toString();
     }
 
     public Course(String title, String titleDescription, String requirements, String description,User user) {
@@ -41,22 +42,17 @@ public class Course {
         this.titleDescription = titleDescription;
         this.requirements = requirements;
         this.description = description;
-        this.created = new Date();
         this.user = user;
     }
 
-    public Course(String id, String title, String titleDescription, String requirements, String description,Date created,User user) {
+    public Course(String id, String title, String titleDescription, String requirements, String description,User user) {
         this(title,titleDescription,requirements,description,user);
-        if (id != null) {
-            this.id = UUID.fromString(id);
-        }
-        this.created = created;
+        this.id = id;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
-
     public String getTitle() {
         return title;
     }
@@ -77,11 +73,20 @@ public class Course {
         return description;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
     public List<Task> getTasks() {
         return tasks;
     }
+
+//    @Override
+//    public String toString() {
+//        return "Course{" +
+//                "id='" + id + '\'' +
+//                ", title='" + title + '\'' +
+//                ", titleDescription='" + titleDescription + '\'' +
+//                ", user=" + user +
+//                ", requirements='" + requirements + '\'' +
+//                ", description='" + description + '\'' +
+//                ", tasks=" + tasks +
+//                '}';
+//    }
 }

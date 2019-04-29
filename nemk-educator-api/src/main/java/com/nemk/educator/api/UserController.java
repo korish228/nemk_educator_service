@@ -5,6 +5,7 @@ import com.nemk.educator.api.viewmodel.UserViewModel;
 import com.nemk.educator.model.User;
 import com.nemk.educator.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -27,6 +28,9 @@ public class UserController {
 
     private UserRepository userRepository;
     private Mapper mapper;
+
+    @Value("${upload.file.storage}")
+    private String pathToStorage;
 
     @Autowired
     public UserController(UserRepository userRepository, Mapper mapper) {
@@ -54,11 +58,14 @@ public class UserController {
             throw new ValidationException("User has errors; Can not register user;");
         }
 
-        this.userRepository.save(user);
-
-        Path path = Paths.get("src/main/storage/users/" + user.getEmail());
+        Path path = Paths.get(pathToStorage + user.getEmail());
         File file = path.toFile();
         file.mkdir();
+        Path pathAndCourses = Paths.get(path.toString(), "/courses");
+        File file1 = pathAndCourses.toFile();
+        file1.mkdir();
+
+        this.userRepository.save(user);
 
         return mapper.convertToUserViewModel(user);
     }
@@ -68,12 +75,11 @@ public class UserController {
 //
 //        User user = this.userRepository.findByEmail(email);
 //
-//        this.userRepository.deleteByEmail(email);
+//        this.userRepository.deleteById(user.getId());
 //
 //        Path path = Paths.get("src/main/storage/users/" + user.getEmail());
 //        File file = path.toFile();
-//        boolean res = file.delete();
-//        System.out.println(res);
+//        file.delete();
 //
 //    }
 

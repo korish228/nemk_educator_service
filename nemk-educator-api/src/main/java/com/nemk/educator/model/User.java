@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,12 +17,12 @@ import java.util.UUID;
 //})
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
 
     @Id
     @Column(name = "user_id")
-    @NotNull
-    private UUID id;
+//    @GeneratedValue(strategy=GenerationType.AUTO)
+    private String id;
 
     @NotNull
     private String name;
@@ -38,8 +39,8 @@ public class User {
     private List<Course> courses;
 
     private User() {
-        this.id = UUID.randomUUID();
         this.courses = new ArrayList<>(0);
+        this.id = UUID.randomUUID().toString();
     }
 
     public User(String name, String email, String password) {
@@ -51,12 +52,10 @@ public class User {
 
     public User(String id, String name, String email, String password) {
         this(name,email,password);
-        if (id != null) {
-            this.id = UUID.fromString(id);
-        }
+        this.id = id;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
@@ -76,5 +75,15 @@ public class User {
         return courses;
     }
 
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "id='" + id + '\'' +
+//                ", name='" + name + '\'' +
+//                ", email='" + email + '\'' +
+//                ", password='" + password + '\'' +
+//                ", courses=" + courses +
+//                '}';
+//    }
 }
 

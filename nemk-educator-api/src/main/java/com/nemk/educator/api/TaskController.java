@@ -1,5 +1,6 @@
 package com.nemk.educator.api;
 
+import com.nemk.educator.Mapper;
 import com.nemk.educator.model.Course;
 import com.nemk.educator.model.Task;
 import com.nemk.educator.repository.CourseRepository;
@@ -20,16 +21,13 @@ import java.util.List;
 public class TaskController {
 
 
-//    private UserRepository userRepository;
-//    private CourseRepository courseRepository;
-//    private TaskRepository taskRepository;
-//
-//    @Autowired
-//    public TaskController(UserRepository userRepository, CourseRepository courseRepository, TaskRepository taskRepository) {
-//        this.userRepository = userRepository;
-//        this.courseRepository = courseRepository;
-//        this.taskRepository = taskRepository;
-//    }
+    private UserRepository userRepository;
+    private CourseRepository courseRepository;
+    private TaskRepository taskRepository;
+    private Mapper mapper ;
+
+
+
 //
 //    @GetMapping("/all")
 //    public List<Task> all(){

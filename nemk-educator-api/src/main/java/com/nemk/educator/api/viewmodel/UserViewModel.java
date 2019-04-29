@@ -3,16 +3,14 @@ package com.nemk.educator.api.viewmodel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nemk.educator.model.Course;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class UserViewModel {
+
 
     private String id;
     @NotNull

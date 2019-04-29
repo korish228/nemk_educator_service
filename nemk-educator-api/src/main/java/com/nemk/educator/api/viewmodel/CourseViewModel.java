@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class CourseViewModel {
 
-    private String  id;
+    private String id;
     private String title;
     private String titleDescription;
 
@@ -22,13 +22,11 @@ public class CourseViewModel {
 
     private String requirements;
     private String description;
-    private Date created;
 
     private int nbTasks;
 
     public CourseViewModel() {
         this.id = UUID.randomUUID().toString();
-        this.created = new Date();
     }
 
     public String getId() {
@@ -79,13 +77,6 @@ public class CourseViewModel {
         this.description = description;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
 
     public int getNbTasks() {
         return nbTasks;
@@ -104,7 +95,6 @@ public class CourseViewModel {
                 ", userId='" + userId + '\'' +
                 ", requirements='" + requirements + '\'' +
                 ", description='" + description + '\'' +
-                ", created=" + created +
                 ", nbTasks=" + nbTasks +
                 '}';
     }

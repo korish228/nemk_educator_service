@@ -28,7 +28,7 @@ public class Mapper {
 
     public UserViewModel convertToUserViewModel(User entity) {
         UserViewModel viewModel = new UserViewModel();
-        viewModel.setId(entity.getId().toString());
+        viewModel.setId(entity.getId());
         viewModel.setName(entity.getName());
         viewModel.setEmail(entity.getEmail());
         viewModel.setPassword(entity.getPassword());
@@ -38,49 +38,54 @@ public class Mapper {
 
     }
 
+    public User convertToUserEntity(UserViewModel viewModel) {
+        User user = this.userRepository.findById(viewModel.getId()).get();
+        User entity = new User(viewModel.getId(), viewModel.getName(), viewModel.getEmail(), viewModel.getPassword());
+
+        return entity;
+    }
+
+
     public CourseViewModel convertToCourseViewModel(Course entity) {
         CourseViewModel viewModel = new CourseViewModel();
-        viewModel.setId(entity.getId().toString());
+        viewModel.setId(entity.getId());
         viewModel.setTitle(entity.getTitle());
         viewModel.setTitleDescription(entity.getTitleDescription());
-        viewModel.setUserId(entity.getUser().getId().toString());
+        viewModel.setUserId(entity.getUser().getId());
         viewModel.setRequirements(entity.getRequirements());
         viewModel.setDescription(entity.getDescription());
-        viewModel.setCreated(entity.getCreated());
         viewModel.setNbTasks(entity.getTasks().size());
 
         return viewModel;
 
     }
 
+    public Course convertToCourseEntity(CourseViewModel viewModel) {
+        User user = this.userRepository.findById(viewModel.getUserId()).get();
+
+
+        Course entity = new Course(viewModel.getId(),viewModel.getTitle(), viewModel.getTitleDescription(),
+                                     viewModel.getRequirements(),viewModel.getDescription(),user);
+        return entity;
+    }
+
     public TaskViewModel convertToTaskViewModel(Task entity) {
         TaskViewModel viewModel = new TaskViewModel();
-        viewModel.setId(entity.getId().toString());
+        viewModel.setId(entity.getId());
         viewModel.setTitle(entity.getTitle());
-        viewModel.setCreated(entity.getCreated());
+        viewModel.setVideoFile(entity.getVideoFIle());
         viewModel.setCourseId(entity.getCourse().getId().toString());
 
         return viewModel;
 
     }
 
-    public User convertToUserEntity(UserViewModel viewModel) {
-        Optional<User> user = this.userRepository.findById(viewModel.getId());
-        User entity = new User(viewModel.getId(), viewModel.getName(), viewModel.getEmail(), viewModel.getPassword());
 
-        return entity;
-    }
 
-    public Course convertToCourseEntity(CourseViewModel viewModel) {
-        Optional<User> user = this.userRepository.findById(viewModel.getId());
-        Course entity = new Course(viewModel.getId(), viewModel.getTitle(), viewModel.getTitleDescription(), viewModel.getRequirements(), viewModel.getDescription(),viewModel.getCreated(), user.get());
-
-        return entity;
-    }
 
     public Task convertToTaskEntity(TaskViewModel viewModel) {
-        Course course = this.courseRepository.findById(viewModel.getId());
-        Task entity = new Task(viewModel.getId(), viewModel.getTitle(),viewModel.getCreated(),course);
+        Optional<Course> course = this.courseRepository.findById(viewModel.getId());
+        Task entity = new Task(viewModel.getId(), viewModel.getTitle(),viewModel.getVideoFile(),course.get());
 
         return entity;
     }

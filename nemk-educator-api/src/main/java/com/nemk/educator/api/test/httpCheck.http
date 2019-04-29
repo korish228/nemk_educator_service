@@ -13,16 +13,16 @@ Content-Type: application/json
 
 {
 
-  "name": "dima",
-  "email": "korish",
-  "password": "lalala"
+  "name": "Dmytro",
+  "email": "Korish",
+  "password": "123"
 }
 
 ###
 
 # API register User
 
-DELETE {{host-url}}//users/deleteUser/8c20237d-7b07-4502-a88f-40b3fa082f00
+DELETE {{host-url}}//users/deleteUser/korish
 Content-Type: application/json
 
 #########################################################################
@@ -39,9 +39,9 @@ POST {{host-url}}//courses/new
 Content-Type: application/json
 
 {
-  "title": "Phyton",
+  "title": "Java Core Part 1",
   "titleDescription": "test",
-  "userId": "1",
+  "userId": "7fd7f7aa-6f2a-4c1e-93ef-72e529cce80a",
   "requirements": "english",
   "description": "lalala"
 }
@@ -52,41 +52,10 @@ Content-Type: application/json
 
 GET {{host-url}}//tasks/all
 
-###
-
-# post Task
-
-#POST {{host-url}}//tasks/new
-#Content-Type: application/json
-#
-#{
-#  "title": "Overview2",
-#  "added": "2019-03-30T13:18:05.447+0000",
-#  "course": {
-#    "id": "11a41e80-b08b-4676-a49e-eafc48493e5d",
-#    "title": "Phyton",
-#    "titleDescription": "",
-#    "user": {
-#      "id": "71e93841-c910-472d-8633-60485e81e7cd",
-#      "name": "Danylo",
-#      "email": "dada",
-#      "password": "2d32m"
-#    },
-#    "requirements": "English",
-#    "description": "lalala",
-#    "created": "2019-03-30T13:18:05.428+0000"
-#  }
-#}
-
-###
-
-
-
-
 
 # find courses by user ID
 
-GET {{host-url}}//courses/byUser/e0699c8e-b4d6-4ff3-a955-0ad70c538e73
+#GET {{host-url}}//courses/byUser/e0699c8e-b4d6-4ff3-a955-0ad70c538e73
 
 ###
 
