@@ -6,10 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 
 //@Table(name = "user", uniqueConstraints = {
@@ -25,7 +22,7 @@ public class User implements Serializable {
     private String id;
 
     @NotNull
-    private String name;
+    private String username;
 
     @Column(unique=true)
     @NotNull
@@ -38,29 +35,38 @@ public class User implements Serializable {
     @JsonIgnore
     private List<Course> courses;
 
+    private boolean enabled;
+    private String role;
+    private Date createdDate;
+
     private User() {
         this.courses = new ArrayList<>(0);
         this.id = UUID.randomUUID().toString();
+        this.createdDate = new Date();
     }
 
-    public User(String name, String email, String password) {
+    public User(String username, String email, String password, boolean enabled, String role) {
         this();
-        this.name = name;
+        this.username = username;
         this.email = email;
         this.password = password;
+        this.enabled = enabled;
+        this.role = role;
+
     }
 
-    public User(String id, String name, String email, String password) {
-        this(name,email,password);
+    public User(String id, String username, String email, String password, boolean enabled, String role, Date createdDate) {
+        this(username, email, password, enabled, role);
         this.id = id;
+        this.createdDate = createdDate;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
     public String getEmail() {
@@ -75,15 +81,21 @@ public class User implements Serializable {
         return courses;
     }
 
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "id='" + id + '\'' +
-//                ", name='" + name + '\'' +
-//                ", email='" + email + '\'' +
-//                ", password='" + password + '\'' +
-//                ", courses=" + courses +
-//                '}';
-//    }
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }
 

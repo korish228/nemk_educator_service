@@ -56,8 +56,6 @@ public class CourseController {
             throw new ValidationException();
         }
 
-//        System.out.println(courseViewModel);
-
         Optional<User> user = this.userRepository.findById(courseViewModel.getUserId());
 
         System.out.println(user.get());
@@ -75,12 +73,5 @@ public class CourseController {
 
         return courseViewModel;
     }
-
-//    @DeleteMapping("/{id}")
-//    public void delete(@PathVariable String id) {
-//        this.courseRepository.deleteById();
-//    }
-
-
 
 }

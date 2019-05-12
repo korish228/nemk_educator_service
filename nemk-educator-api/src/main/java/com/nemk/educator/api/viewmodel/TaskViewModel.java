@@ -2,31 +2,30 @@ package com.nemk.educator.api.viewmodel;
 
 
 //import com.nemk.educator.model.File;
-import com.nemk.educator.model.TaskDocument;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 import java.util.UUID;
 
 public class TaskViewModel {
 
     private String id;
     private String title;
+
     @NotNull
     private String courseId;
 
-    private TaskDocument videoFile;
+    private String urlToVideoFile;
 
     public TaskViewModel() {
         this.id = UUID.randomUUID().toString();
     }
 
-    public TaskDocument getVideoFile() {
-        return videoFile;
+    public String getUrlToVideoFile() {
+        return urlToVideoFile;
     }
 
-    public void setVideoFile(TaskDocument videoFile) {
-        this.videoFile = videoFile;
+    public void setUrlToVideoFile(String urlToVideoFile) {
+        this.urlToVideoFile = urlToVideoFile;
     }
 
     public String getId() {
@@ -51,15 +50,5 @@ public class TaskViewModel {
 
     public void setCourseId(String courseId) {
         this.courseId = courseId;
-    }
-
-    @Override
-    public String toString() {
-        return "TaskViewModel{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", courseId='" + courseId + '\'' +
-                ", videoFile=" + videoFile +
-                '}';
     }
 }

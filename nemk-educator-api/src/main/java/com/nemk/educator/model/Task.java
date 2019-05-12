@@ -20,28 +20,26 @@ public class Task implements Serializable {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "task_document_id")
-    private TaskDocument videoFIle;
+    private String urlToVideoFile;
 
     private Task() {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Task(String title, TaskDocument videoFIle, Course course) {
+    public Task(String title,String urlToVideoFile, Course course) {
         this();
         this.title = title;
-        this.videoFIle = videoFIle;
         this.course = course;
+        this.urlToVideoFile = urlToVideoFile;
     }
 
-    public Task(String id, String title, TaskDocument videoFIle, Course course) {
-        this(title,videoFIle, course);
+    public Task(String id, String title,String urlToVideoFile, Course course) {
+        this(title,urlToVideoFile, course);
         this.id = id;
     }
 
-    public TaskDocument getVideoFIle() {
-        return videoFIle;
+    public String getUrlToVideoFile() {
+        return urlToVideoFile;
     }
 
     public String getId() {
@@ -56,4 +54,14 @@ public class Task implements Serializable {
     public Course getCourse() {
         return course;
     }
+//
+//    @Override
+//    public String toString() {
+//        return "Task{" +
+//                "id='" + id + '\'' +
+//                ", title='" + title + '\'' +
+//                ", course=" + course +
+//                ", videoFIle=" + videoFIle +
+//                '}';
+//    }
 }

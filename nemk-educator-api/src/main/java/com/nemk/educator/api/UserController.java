@@ -50,38 +50,26 @@ public class UserController {
     }
 
 
-    @PostMapping("/registration")
-    @ResponseStatus(value= HttpStatus.OK)
-    public UserViewModel createUser(@RequestBody User user, BindingResult bindingResult){
-
-        if (bindingResult.hasErrors()) {
-            throw new ValidationException("User has errors; Can not register user;");
-        }
-
-        Path path = Paths.get(pathToStorage + user.getEmail());
-        File file = path.toFile();
-        file.mkdir();
-        Path pathAndCourses = Paths.get(path.toString(), "/courses");
-        File file1 = pathAndCourses.toFile();
-        file1.mkdir();
-
-        this.userRepository.save(user);
-
-        return mapper.convertToUserViewModel(user);
-    }
-
-//    @GetMapping("/deleteUser/{email}")
-//    public void delete(@PathVariable String email){
+//    @PostMapping("/registration")
+//    @ResponseStatus(value= HttpStatus.OK)
+//    public UserViewModel createUser(@RequestBody User user, BindingResult bindingResult){
 //
-//        User user = this.userRepository.findByEmail(email);
+//        if (bindingResult.hasErrors()) {
+//            throw new ValidationException("User has errors; Can not register user;");
+//        }
 //
-//        this.userRepository.deleteById(user.getId());
-//
-//        Path path = Paths.get("src/main/storage/users/" + user.getEmail());
+//        Path path = Paths.get(pathToStorage + user.getEmail());
 //        File file = path.toFile();
-//        file.delete();
+//        file.mkdir();
+//        Path pathAndCourses = Paths.get(path.toString(), "/courses");
+//        File file1 = pathAndCourses.toFile();
+//        file1.mkdir();
 //
+//        this.userRepository.save(user);
+//
+//        return mapper.convertToUserViewModel(user);
 //    }
+
 
 
 }

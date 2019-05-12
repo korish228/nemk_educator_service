@@ -6,6 +6,7 @@ import com.nemk.educator.model.Course;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,7 +15,7 @@ public class UserViewModel {
 
     private String id;
     @NotNull
-    private String name;
+    private String username;
     @NotNull
     private String email;
     @NotNull
@@ -22,16 +23,39 @@ public class UserViewModel {
 
     private int nbCourses;
 
+    private boolean enabled;
+
+    private String role;
+
+    private Date created;
+
     public UserViewModel() {
         this.id = UUID.randomUUID().toString();
-    }
-//
-    public int getNbCourses() {
-        return nbCourses;
+        this.created = new Date();
     }
 
-    public void setNbCourses(int nbCourses) {
-        this.nbCourses = nbCourses;
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getId() {
@@ -42,12 +66,12 @@ public class UserViewModel {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -66,14 +90,12 @@ public class UserViewModel {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "UserViewModel{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", nbCourses=" + nbCourses +
-                '}';
+    public int getNbCourses() {
+        return nbCourses;
+    }
+
+    public void setNbCourses(int nbCourses) {
+        this.nbCourses = nbCourses;
     }
 }
+

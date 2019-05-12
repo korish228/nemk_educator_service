@@ -29,10 +29,13 @@ public class Mapper {
     public UserViewModel convertToUserViewModel(User entity) {
         UserViewModel viewModel = new UserViewModel();
         viewModel.setId(entity.getId());
-        viewModel.setName(entity.getName());
+        viewModel.setUsername(entity.getUsername());
         viewModel.setEmail(entity.getEmail());
         viewModel.setPassword(entity.getPassword());
         viewModel.setNbCourses(entity.getCourses().size());
+        viewModel.setEnabled(entity.isEnabled());
+        viewModel.setRole(entity.getRole());
+        viewModel.setCreated(entity.getCreatedDate());
 
         return viewModel;
 
@@ -40,7 +43,8 @@ public class Mapper {
 
     public User convertToUserEntity(UserViewModel viewModel) {
         User user = this.userRepository.findById(viewModel.getId()).get();
-        User entity = new User(viewModel.getId(), viewModel.getName(), viewModel.getEmail(), viewModel.getPassword());
+        User entity = new User(viewModel.getId(), viewModel.getUsername(), viewModel.getEmail(),
+                viewModel.getPassword(), viewModel.isEnabled(), viewModel.getRole(), viewModel.getCreated());
 
         return entity;
     }
@@ -73,19 +77,17 @@ public class Mapper {
         TaskViewModel viewModel = new TaskViewModel();
         viewModel.setId(entity.getId());
         viewModel.setTitle(entity.getTitle());
-        viewModel.setVideoFile(entity.getVideoFIle());
-        viewModel.setCourseId(entity.getCourse().getId().toString());
+        viewModel.setUrlToVideoFile(entity.getUrlToVideoFile());
+        viewModel.setCourseId(entity.getCourse().getId());
 
         return viewModel;
 
     }
 
 
-
-
     public Task convertToTaskEntity(TaskViewModel viewModel) {
-        Optional<Course> course = this.courseRepository.findById(viewModel.getId());
-        Task entity = new Task(viewModel.getId(), viewModel.getTitle(),viewModel.getVideoFile(),course.get());
+        Optional<Course> course = this.courseRepository.findById(viewModel.getCourseId());
+        Task entity = new Task(viewModel.getId(), viewModel.getTitle(),viewModel.getUrlToVideoFile() ,course.get());
 
         return entity;
     }

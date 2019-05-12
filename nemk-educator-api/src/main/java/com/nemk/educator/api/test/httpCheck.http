@@ -8,19 +8,34 @@ Content-Type: application/json
 
 # API register User
 
-POST {{host-url}}//users/registration
+
+
+POST {{host-url}}//registration
 Content-Type: application/json
 
 {
 
-  "name": "Dmytro",
-  "email": "Korish",
-  "password": "123"
+  "username": "Dmytro",
+  "email": "kordfish@gmail.com",
+  "password": "1111",
+  "enabled": true,
+  "role": "USER"
+
 }
+
 
 ###
 
-# API register User
+POST {{host-url}}//login
+Content-Type: application/json
+
+{
+  "email": "kordfish@gmail.com",
+  "password": "1111"
+}
+
+###
+# API delete User
 
 DELETE {{host-url}}//users/deleteUser/korish
 Content-Type: application/json
@@ -41,26 +56,30 @@ Content-Type: application/json
 {
   "title": "Java Core Part 1",
   "titleDescription": "test",
-  "userId": "7fd7f7aa-6f2a-4c1e-93ef-72e529cce80a",
+  "userId": "c5c01a9b-f68d-4828-a429-031300a07595",
   "requirements": "english",
   "description": "lalala"
 }
 
-###
+#########################################################################
 
 # API All tasks
 
 GET {{host-url}}//tasks/all
 
-
-# find courses by user ID
-
-#GET {{host-url}}//courses/byUser/e0699c8e-b4d6-4ff3-a955-0ad70c538e73
-
 ###
 
-# find tasks by course ID
+POST {{host-url}}//tasks/new
+Content-Type: application/json
 
-GET {{host-url}}//tasks/byCourse/{CourseID}
+{
+  "title": "Checking",
+  "courseId": "f1bd69b7-7674-4800-853e-313a5b4a0b67"
+}
+
+
+###
+POST {{host-url}}//tasks/uploadVideo/19dda7b5-c03f-42c5-a41d-132268eed3d1
+#Content-Type: application/json
 
 ###
