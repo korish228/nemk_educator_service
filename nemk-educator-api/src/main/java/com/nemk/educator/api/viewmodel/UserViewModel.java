@@ -32,6 +32,7 @@ public class UserViewModel {
     public UserViewModel() {
         this.id = UUID.randomUUID().toString();
         this.created = new Date();
+        this.nbCourses = 0;
     }
 
     public Date getCreated() {

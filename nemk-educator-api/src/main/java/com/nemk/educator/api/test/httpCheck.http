@@ -1,7 +1,7 @@
 
 # API all users
 
-GET {{host-url}}//users/allUsers
+GET {{host-url}}//users
 Content-Type: application/json
 
 ###
@@ -14,13 +14,9 @@ POST {{host-url}}//registration
 Content-Type: application/json
 
 {
-
   "username": "Dmytro",
-  "email": "kordfish@gmail.com",
-  "password": "1111",
-  "enabled": true,
-  "role": "USER"
-
+  "email": "korish@gmail.com",
+  "password": "111"
 }
 
 
@@ -30,21 +26,14 @@ POST {{host-url}}//login
 Content-Type: application/json
 
 {
-  "email": "kordfish@gmail.com",
-  "password": "1111"
+  "email": "korish@gmail.com",
+  "password": "111"
 }
 
 ###
-# API delete User
-
-DELETE {{host-url}}//users/deleteUser/korish
-Content-Type: application/json
-
-#########################################################################
-
 # API All courses
 
-GET {{host-url}}//courses/all
+GET {{host-url}}//courses
 
 ###
 
@@ -54,18 +43,24 @@ POST {{host-url}}//courses/new
 Content-Type: application/json
 
 {
-  "title": "Java Core Part 1",
+  "title": "Java2",
   "titleDescription": "test",
-  "userId": "c5c01a9b-f68d-4828-a429-031300a07595",
+  "userId": "1a9d0a19-9236-40ae-b3df-26c6255dea37",
   "requirements": "english",
   "description": "lalala"
 }
+
+###
+# API Delete course by id
+
+DELETE {{host-url}}//courses/e2f9dad6-1eef-4bf7-9ce0-85eac3577379
+
 
 #########################################################################
 
 # API All tasks
 
-GET {{host-url}}//tasks/all
+GET {{host-url}}//tasks
 
 ###
 
@@ -74,12 +69,6 @@ Content-Type: application/json
 
 {
   "title": "Checking",
-  "courseId": "f1bd69b7-7674-4800-853e-313a5b4a0b67"
+  "courseId": "d0386a57-3513-4a7a-81a1-52c6cdf8c9e7"
 }
 
-
-###
-POST {{host-url}}//tasks/uploadVideo/19dda7b5-c03f-42c5-a41d-132268eed3d1
-#Content-Type: application/json
-
-###

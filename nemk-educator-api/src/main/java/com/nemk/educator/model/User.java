@@ -18,7 +18,6 @@ public class User implements Serializable {
 
     @Id
     @Column(name = "user_id")
-//    @GeneratedValue(strategy=GenerationType.AUTO)
     private String id;
 
     @NotNull
@@ -43,22 +42,23 @@ public class User implements Serializable {
         this.courses = new ArrayList<>(0);
         this.id = UUID.randomUUID().toString();
         this.createdDate = new Date();
+        this.role = "USER";
+        this.enabled = true;
     }
 
-    public User(String username, String email, String password, boolean enabled, String role) {
+    public User(String username, String email, String password) {
         this();
         this.username = username;
         this.email = email;
         this.password = password;
-        this.enabled = enabled;
-        this.role = role;
-
     }
 
     public User(String id, String username, String email, String password, boolean enabled, String role, Date createdDate) {
-        this(username, email, password, enabled, role);
+        this(username, email, password);
         this.id = id;
         this.createdDate = createdDate;
+        this.role = role;
+        this.enabled = enabled;
     }
 
     public String getId() {

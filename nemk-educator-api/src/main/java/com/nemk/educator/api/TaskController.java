@@ -51,32 +51,34 @@ public class TaskController {
 
 
 
+
+
 //    http://websystique.com/springmvc/spring-mvc-4-fileupload-download-hibernate-example/
 
-    @PostMapping("/uploadVideo/{taskId}")
-    public String uploadFile(@RequestParam("file") MultipartFile file, @PathVariable String taskId) {
+//    @PostMapping("/upload/{taskId}")
+//    public String uploadFile(@RequestParam("file") MultipartFile file, @PathVariable String taskId) {
 
-        Task task = this.taskRepository.findById(taskId).get();
+//        Task task = this.taskRepository.findById(taskId).get();
 //        System.out.println(file.getOriginalFilename());
+//
+//        Path pathBaseDir = Paths.get(pathToStorage, task.getCourse().getUser().getEmail(), "/courses" , task.getCourse().getTitle(), "/tasks", task.getTitle());
+//        Path path = Paths.get(pathBaseDir.toString(),file.getOriginalFilename());
+//        try {
+//            taskRepository.setVideoUrlByTaskId(path.toString(), taskId);
+//
+//            FileUtils.cleanDirectory(pathBaseDir.toFile());
+//            path.toFile().createNewFile();
+//            FileOutputStream fileOutputStream = new FileOutputStream(path.toFile());
+//            fileOutputStream.write(file.getBytes());
+//            fileOutputStream.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return " Uploading been successfully uploaded";
+//    }
 
-        Path pathBaseDir = Paths.get(pathToStorage, task.getCourse().getUser().getEmail(), "/courses" , task.getCourse().getTitle(), "/tasks", task.getTitle());
-        Path path = Paths.get(pathBaseDir.toString(),file.getOriginalFilename());
-        try {
-            taskRepository.setVideoUrlByTaskId(path.toString(), taskId);
 
-            FileUtils.cleanDirectory(pathBaseDir.toFile());
-            path.toFile().createNewFile();
-            FileOutputStream fileOutputStream = new FileOutputStream(path.toFile());
-            fileOutputStream.write(file.getBytes());
-            fileOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return " Uploading been successfully uploaded";
-    }
-
-
-    @GetMapping("/all")
+    @GetMapping
     public List<TaskViewModel> all(){
         List<Task> tasks = taskRepository.findAll();
         List<TaskViewModel> list = tasks.stream()
@@ -85,6 +87,11 @@ public class TaskController {
         return list;
     }
 
+    @GetMapping("/{id}")
+    public TaskViewModel byId(@PathVariable String id){
+        Task task = taskRepository.findById(id).get();
+        return mapper.convertToTaskViewModel(task);
+    }
 
     @PostMapping("/new")
     public TaskViewModel newTask(@RequestBody TaskViewModel taskViewModel, BindingResult bindingResult) {

@@ -50,10 +50,15 @@ public class AuthentificationController {
             return new ResponseEntity<UserDto>(new UserDto(userDetails.getUser(), token), HttpStatus.OK);
 
         }catch (Exception e){
-            System.out.println("try 7");
             throw new UnauthorizedException(e.getMessage());
         }
 
+    }
+
+
+    @PostMapping(value = "/logout" )
+    public ResponseEntity<UserDto> logout(@RequestBody User user, HttpServletRequest request, HttpServletResponse response){
+        return null;
     }
 
 

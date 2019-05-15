@@ -28,7 +28,7 @@ public class Course implements Serializable {
     private String requirements;
     private String description;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "course")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "course", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnore
     private List<Task> tasks;
 
